@@ -1,0 +1,14 @@
+name: 31-atlas-studio-dev
+
+services:
+  atlas-studio:
+    container_name: 31-atlas-studio-web-dev
+    build: .
+    ports:
+      - "${ATLAS_HOST_PORT:-4185}:4173"
+    environment:
+      PORT: "4173"
+      ATLAS_BASE_URL: "http://localhost:${ATLAS_HOST_PORT:-4185}"
+      ATLAS_RUNTIME_DIR: /app/runtime-data
+    volumes:
+      - ./runtime-data:/app/runtime-data
