@@ -15,6 +15,7 @@ Framework full-stack para micrositios de datos con:
 
 ## Documentacion tecnica
 
+- [docs/CONCEPT_NOTE.md](docs/CONCEPT_NOTE.md): concept note in English covering the product vision, users, current capabilities, architecture, methodology, security, maturity, limits, roadmap, and proprietary governance.
 - [docs/architecture.md](docs/architecture.md): arquitectura de la plataforma, topologia por capas y puntos de extension.
 - [docs/commercial-overview.md](docs/commercial-overview.md): que es Atlas, como funciona y que compra realmente el cliente.
 - [docs/commercial-methodology.md](docs/commercial-methodology.md): metodo comercial para client briefing, one-pager y narrativa de venta.
@@ -60,13 +61,9 @@ npm run build
 npm run start
 ```
 
-Deploy productivo Hostinger:
-
-```bash
-bash scripts/publish_hostinger.sh
-```
-
-Ese script protege `.env.hostinger` durante el sync y luego ejecuta el deploy remoto.
+El snapshot publico no incluye credenciales ni scripts ligados a un proveedor.
+El despliegue productivo debe realizarse mediante el proceso controlado del
+operador, inyectando secretos fuera del repositorio.
 
 ## Docker
 
@@ -88,8 +85,8 @@ O con compose:
 docker compose up --build -d
 ```
 
-El `compose.yaml` usa `4185` por defecto porque `4173` ya estaba ocupado en este host por `breast-cancer-archive`.
-El contenedor queda nombrado como `atlas-studio-demo`.
+El `compose.yaml` publica el puerto `4185` por defecto; puede cambiarse con
+`ATLAS_HOST_PORT`. El servicio escucha en el puerto `4173` dentro del contenedor.
 
 ## Endpoints demo
 
